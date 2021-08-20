@@ -1,0 +1,60 @@
+<!-- <div class="container">
+  <app-box></app-box>
+  <button [routerLink]="['/']">to app</button>
+  <button [routerLink]="['/test']">to test</button>
+  <button [routerLink]="['/1']">to 1</button>
+</div> -->
+
+<div class="container">
+  <form action="/model" method="post">
+
+
+    <div>Model Printer</div>
+    <input type="radio" id="Vutek_R" name="modelPrinter" value="Vutek R">
+    <label for="Vutek_R">Vutek R</label><br>
+    <input type="radio" id="Vutek_D" name="modelPrinter" value="Vutek D">
+    <label for="Vutek_D">Vutek D</label><br>
+    <input type="radio" id="Vutek_Q" name="modelPrinter" value="Vutek Q">
+    <label for="Vutek_Q">Vutek Q</label><br>
+    <input type="radio" id="Matan" name="modelPrinter" value="Matan">
+    <label for="Matan">Matan</label><br>
+    <hr>
+    <div>Printer Length</div>
+    <input type="radio" id="5M" name="lengthPrinter" value="5M">
+    <label for="5M">5M</label><br>
+    <input type="radio" id="3M" name="lengthPrinter" value="3M">
+    <label for="3M">3M</label><br>
+    <hr>
+    <div>Options</div>
+    <input type="checkbox" name="BackPrint" id="backPrint">
+    <label for="backPrint">Back Print</label><br>
+    <input type="checkbox" name="Cutter" id="Cutter">
+    <label for="Cutter">Cutter</label><br>
+    <input type="checkbox" name="" id="BackLite">
+    <label for="BackLite">Back Lite</label><br>
+    <input type="checkbox" name="" id="rollAndTipe">
+    <label for="rollAndTipe">Roll & Tipe</label><br>
+    <input type="number" name="" min="0" id="slitter" [(ngModel)]="value" [(value)]="slitter">
+    <label for="slitter">slitter</label><br>
+    <hr>
+    <button type="submit">OK</button>
+  </form>
+</div>
+
+<table>
+  <tr>
+    <th>box</th>
+    <th>description</th>
+    <th>part number</th>
+    <th>quantety</th>
+    <th>check</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>slitter</td>
+    <td>47848930</td>
+    <td>{{slitter}}</td>
+    <td><input type="checkbox" name="" id=""></td>
+  </tr>
+</table>
+<!-- <router-outlet></router-outlet> -->
