@@ -11,7 +11,8 @@
   "dependencies": {
     "@angular/cli": "^12.2.1",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "ws": "^8.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

@@ -1,11 +1,13 @@
 const express = require('express');
 const path = require('path');
 const cors = require("cors");
+const { WebSocketServer } = require("ws");
+
 const app = express();
 
 const PORT = process.env.PORT || 8080;
 
-const corsOptions = {origin: "http://localhost:4200"};
+const corsOptions = { origin: "http://localhost:4200" };
 
 app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/client-app/dist/client-app/'));
@@ -23,8 +25,20 @@ app.get('/', cors(corsOptions), (req, res) => {
 
 
 app.get('/test', cors(corsOptions), (req, res) => {
-  res.send('hello from server');
+    res.send('hello from server');
 });
+
+
+const WebSocket = new WebSocketServer({ app });
+
+WebSocket.on('connection', (ws) => {
+    ws.on('message', (message) => {
+        console.log('received: %s', message);
+    });
+
+    ws.send('something');
+});
+
 
 
 app.listen(PORT, (err) => {
