@@ -1,20 +1,22 @@
-const express = require('express');
+const app = require('express')();
 const path = require('path');
 const cors = require("cors");
 const { WebSocketServer } = require("ws");
 
-const app = express();
+// const app = express();
 
 const PORT = process.env.PORT || 8080;
+
+const wsPORT = process.env.PORT || 4200;
 
 const corsOptions = { origin: "http://localhost:4200" };
 
 app.use(cors(corsOptions));
-app.use(express.static(__dirname + '/client-app/dist/client-app/'));
+// app.use(express.static(__dirname + '/client-app/dist/client-app/'));
 
-app.get('/', cors(corsOptions), (req, res) => {
-    res.sendFile(path.join(__dirname + '/client-app/dist/client-app/index.html'));
-});
+// app.get('/', cors(corsOptions), (req, res) => {
+//     res.sendFile(path.join(__dirname + '/client-app/dist/client-app/index.html'));
+// });
 
 
 // app.use(express.static(__dirname + '/dist/client-beauty-salon'));
@@ -24,14 +26,15 @@ app.get('/', cors(corsOptions), (req, res) => {
 // });
 
 
-app.get('/test', cors(corsOptions), (req, res) => {
-    res.send('hello from server');
-});
+// app.get('/test', cors(corsOptions), (req, res) => {
+//     res.send('hello from server');
+// });
 
 
-const WebSocket = new WebSocketServer({ app });
 
-WebSocket.on('connection', (ws) => {
+const wss = new WebSocketServer({port: wsPORT});
+
+wss.on('connection', (ws) => {
     ws.on('message', (message) => {
         console.log('received: %s', message);
     });
