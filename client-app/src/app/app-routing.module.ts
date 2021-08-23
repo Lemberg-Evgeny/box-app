@@ -34,8 +34,9 @@ const routes: Routes = [
   // { path: '', redirectTo: 'login', pathMatch: 'full' },
   // { path: '**', redirectTo: 'login' }
   // { path: 'test', redirectTo: '/test' }
-  { path: 'test', component: BoxComponent },
   { path: '', component: AppComponent },
+  { path: 'test', component: BoxComponent },
+  // { path: '**', component: NotFoundComponent },
 ];
 
 

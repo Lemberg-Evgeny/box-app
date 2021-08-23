@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { WebsocketService } from './services/websocket.service';
+import { Observable } from 'rxjs';
+import { Box, HttpService } from './services/http.service';
+// import { WebsocketService } from './services/websocket.service';
 
 
 @Component({
@@ -11,7 +13,18 @@ export class AppComponent {
 
   slitter: any;
 
-  constructor(private ws: WebsocketService) {
+  boxsList: Array<any> = [
+    'shaft',
+    'BL-30076',
+    12
+  ]
+
+  apiBoxsList: Observable<Box[]>;
+  // apiBoxsList: any[];
+
+  constructor(private http: HttpService) {
+    // this.apiBoxsList = this.http.getData();
+    this.apiBoxsList = this.http.getData();
   }
 
 

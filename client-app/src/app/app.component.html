@@ -41,7 +41,7 @@
   </form>
 </div>
 
-<table>
+<!-- <table>
   <tr>
     <th>box</th>
     <th>description</th>
@@ -56,5 +56,22 @@
     <td>{{slitter}}</td>
     <td><input type="checkbox" name="" id=""></td>
   </tr>
-</table>
+</table> -->
 <!-- <router-outlet></router-outlet> -->
+
+<table>
+  <tr>
+    <th>box</th>
+    <th>description</th>
+    <th>part number</th>
+    <th>quantety</th>
+    <th>check</th>
+  </tr>
+  <tr *ngFor="let item of apiBoxsList|async; index as i">
+    <td>{{i+1}}</td>
+    <td>{{item.boxDescription}}</td>
+    <td>{{item.boxPN}}</td>
+    <td>{{item.boxQuantety}}</td>
+    <td><input type="checkbox" name="" id=""></td>
+  </tr>
+</table>

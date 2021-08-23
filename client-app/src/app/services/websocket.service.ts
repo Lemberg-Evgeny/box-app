@@ -8,6 +8,4 @@ export class WebsocketService {
   // 'ws://echo.websocket.org/'
   constructor() { }
 
-
-
 }
