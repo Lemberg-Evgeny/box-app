@@ -10,22 +10,30 @@ import { Box, HttpService } from './services/http.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  slitter: any;
-
-  boxsList: Array<any> = [
-    'shaft',
-    'BL-30076',
-    12
-  ]
+  data: any;
 
   apiBoxsList: Observable<Box[]>;
   // apiBoxsList: any[];
 
   constructor(private http: HttpService) {
-    // this.apiBoxsList = this.http.getData();
     this.apiBoxsList = this.http.getData();
+    // this.apiBoxsList = this.http.getData();
+    // this.getData();
   }
+
+  // Observable classic examples
+  // public getData() {
+  //   this.http.getByObservable('http://localhost:8080/box').subscribe(value => {
+  //     // value - результат
+  //     console.log('data app.component: ' + value);
+  //     return this.data = value;
+
+  //   },
+  //     error => {
+  //       // error - объект ошибки
+  //       console.log(error);
+  //     });
+  // }
 
 
 

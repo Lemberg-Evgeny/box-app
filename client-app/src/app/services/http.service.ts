@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export interface Box {
   boxDescription: string,
@@ -15,11 +16,14 @@ export class HttpService {
 
   constructor(private http: HttpClient) { };
 
-  getData() {
-    console.log('HttpService: ' + this.data);
+  public getData() {
     this.data = this.http.get<Box[]>('http://localhost:8080/box');
-    console.log(this.data)
+    console.log('HttpService: ' + this.data);
     return this.data;
   }
+
+  // public getByObservable(url: string): Observable<Box[]> {
+  //   return this.http.get<Box[]>(url);
+  // }
 
 }
