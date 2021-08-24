@@ -6,7 +6,8 @@
 </div> -->
 
 <div class="container">
-  <form action="/model" method="post">
+  <!-- <form action="/model" method="post"> -->
+  <form>
 
 
     <div>Model Printer</div>
@@ -37,7 +38,7 @@
     <input type="number" name="" min="0" id="slitter">
     <label for="slitter">slitter</label><br>
     <hr>
-    <button type="submit">OK</button>
+    <button type="submit" (click)="postData()">OK</button>
   </form>
 </div>
 
@@ -74,5 +75,4 @@
     <td>{{item.boxQuantety}}</td>
     <td><input type="checkbox" name="" id=""></td>
   </tr>
-
 </table>

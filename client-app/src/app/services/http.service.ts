@@ -17,9 +17,15 @@ export class HttpService {
   constructor(private http: HttpClient) { };
 
   public getData() {
-    this.data = this.http.get<Box[]>('http://localhost:8080/box');
+    this.data = this.http.get<Box[]>('http://localhost:8080/model');
     console.log('HttpService: ' + this.data);
     return this.data;
+  }
+
+ 
+  public postData() {
+    this.data = this.http.post('http://localhost:8080/model',{hhhhhhhhhh:"jhjfngfkngkfmgfkg"});
+   
   }
 
   // public getByObservable(url: string): Observable<Box[]> {

@@ -21,6 +21,10 @@ export class AppComponent {
     // this.getData();
   }
 
+public postData(){
+  this.http.postData()
+}
+
   // Observable classic examples
   // public getData() {
   //   this.http.getByObservable('http://localhost:8080/box').subscribe(value => {

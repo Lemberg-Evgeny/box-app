@@ -12,6 +12,7 @@
     "@angular/cli": "^12.2.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "mongodb": "^4.1.0",
     "ws": "^8.2.0"
   },
   "devDependencies": {
