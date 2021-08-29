@@ -1,8 +1,19 @@
+
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Box, HttpService } from './services/http.service';
+import { FormsModule, NgForm } from '@angular/forms';
 // import { WebsocketService } from './services/websocket.service';
 
+// export interface configPrinter {
+//   model: string,
+//   length: string,
+//   cutter: boolean,
+//   backPrinter: boolean,
+//   rollAndType: boolean,
+//   slitter: string,
+//   backLite:boolean
+// }
 
 @Component({
   selector: 'app-root',
@@ -10,20 +21,44 @@ import { Box, HttpService } from './services/http.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  data: any;
 
-  apiBoxsList: Observable<Box[]>;
-  // apiBoxsList: any[];
+  // apiBoxsList: Observable<Box[]>;
+  apiBoxsList:any[] = [];
 
   constructor(private http: HttpService) {
-    this.apiBoxsList = this.http.getData();
     // this.apiBoxsList = this.http.getData();
-    // this.getData();
   }
 
-public postData(){
-  this.http.postData()
-}
+  public submitForm(form: NgForm) {
+
+    if (!form.valid) {
+      alert('Model Printer NOT specified')
+      console.log('form not valid: --- printer model not specified');
+      // return false;
+    } else {
+
+      this.http.postData(form.value).subscribe(a=>{
+        console.log('data from app.component', a)
+        this.apiBoxsList=a.Boxs
+      });
+      // .subscribe((data:any) => this.user=new User(data.name, data.age)););
+      // .subscribe((data: any) => this.users=data["userList"]);
+        // this.apiBoxsList = data["boxs"];
+
+    }
+
+  }
+
+
+  // public sendModelPrinter() {
+  //   let data: any = {
+  //     a: "33333333333333333333333333",
+  //     b: "f/ssssssssssssssss"
+  //   }
+  //   this.http.postData(data)
+  // }
+
+
 
   // Observable classic examples
   // public getData() {

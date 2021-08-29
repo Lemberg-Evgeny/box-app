@@ -7,38 +7,38 @@
 
 <div class="container">
   <!-- <form action="/model" method="post"> -->
-  <form>
-
-
-    <div>Model Printer</div>
-    <input type="radio" id="Vutek_R" name="modelPrinter" value="Vutek R">
+  <form #myForm="ngForm" (submit)="submitForm(myForm)">
+    <div>Model Printer <span class="text-danger">*</span></div>
+    <input type="radio" id="Vutek_R" name="modelPrinter" value="R" [ngModel] required>
     <label for="Vutek_R">Vutek R</label><br>
-    <input type="radio" id="Vutek_D" name="modelPrinter" value="Vutek D">
+    <input type="radio" id="Vutek_D" name="modelPrinter" value="D" [ngModel] required>
     <label for="Vutek_D">Vutek D</label><br>
-    <input type="radio" id="Vutek_Q" name="modelPrinter" value="Vutek Q">
+    <input type="radio" id="Vutek_Q" name="modelPrinter" value="Q" [ngModel] required>
     <label for="Vutek_Q">Vutek Q</label><br>
-    <input type="radio" id="Matan" name="modelPrinter" value="Matan">
+    <input type="radio" id="Matan" name="modelPrinter" value="Matan" [ngModel] required>
     <label for="Matan">Matan</label><br>
+    <input type="radio" id="Pro32" name="modelPrinter" value="Pro32" [ngModel] required>
+    <label for="Matan">Pro32</label><br>
     <hr>
     <div>Printer Length</div>
-    <input type="radio" id="5M" name="lengthPrinter" value="5M">
+    <input type="radio" id="5M" name="lengthPrinter" value="5" [ngModel]>
     <label for="5M">5M</label><br>
-    <input type="radio" id="3M" name="lengthPrinter" value="3M">
+    <input type="radio" id="3M" name="lengthPrinter" value="3" [ngModel]>
     <label for="3M">3M</label><br>
     <hr>
     <div>Options</div>
-    <input type="checkbox" name="BackPrint" id="backPrint">
+    <input type="checkbox" name="backPrint" id="backPrint" [ngModel]>
     <label for="backPrint">Back Print</label><br>
-    <input type="checkbox" name="Cutter" id="Cutter">
+    <input type="checkbox" name="cutter" id="cutter" [ngModel]>
     <label for="Cutter">Cutter</label><br>
-    <input type="checkbox" name="" id="BackLite">
+    <input type="checkbox" name="backLite" id="backLite" [ngModel]>
     <label for="BackLite">Back Lite</label><br>
-    <input type="checkbox" name="" id="rollAndTipe">
+    <input type="checkbox" name="rollAndTipe" id="rollAndTipe" [ngModel]>
     <label for="rollAndTipe">Roll & Tipe</label><br>
-    <input type="number" name="" min="0" id="slitter">
+    <input type="number" name="slitter" min="0" id="slitter" [ngModel]>
     <label for="slitter">slitter</label><br>
     <hr>
-    <button type="submit" (click)="postData()">OK</button>
+    <button type="submit">OK</button>
   </form>
 </div>
 
@@ -68,11 +68,9 @@
     <th>quantety</th>
     <th>check</th>
   </tr>
-  <tr *ngFor="let item of apiBoxsList|async; index as i">
+  <tr *ngFor="let item of apiBoxsList; index as i">
     <td>{{i+1}}</td>
-    <td>{{item.boxDescription}}</td>
-    <td>{{item.boxPN}}</td>
-    <td>{{item.boxQuantety}}</td>
+    <td>{{item}}</td>
     <td><input type="checkbox" name="" id=""></td>
   </tr>
 </table>

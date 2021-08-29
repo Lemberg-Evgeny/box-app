@@ -1,18 +1,31 @@
+
+// const express = require("express")
 const app = require("express")();
 const path = require('path');
 const cors = require("cors");
 const WebSocket = require("ws");
+const bodyParser = require('body-parser');
 const server = require("http").createServer(app);
 const { MongoClient } = require('mongodb');
-// const app = express();
+const { Interface } = require("readline");
+const { Console } = require("console");
 
 
 const PORT = process.env.PORT || 8080;
 const wsPORT = process.env.PORT || 4200;
 
-const corsOptions = { origin: "http://localhost:4200" };
+const corsOptions = { origin: "http://localhost:4200"};
 
 app.use(cors(corsOptions));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+// настройка CORS
+app.use(function (req, res, next) {
+    // res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, PATCH, PUT, POST, DELETE, OPTIONS");
+    next();  // передаем обработку запроса методу app.post
+});
 // app.use(express.static(__dirname + '/client-app/dist/client-app/'));
 
 ////////////////////////////////////// MongoDB /////////////////////////////////
@@ -21,11 +34,19 @@ const uri = "mongodb+srv://Evgeny:12345@statusbox.slcwx.mongodb.net/StatusBox?re
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
-async function run() {
+// modelPrinter: 'R',
+//   lengthPrinter: '5',
+//   backPrint: null,
+//   cutter: null,
+//   backLite: null,
+//   rollAndTipe: null,
+//   slitter: null
+
+async function run(printer) {
     try {
         await client.connect();
         console.log("------------------------------------ MongoDB connection connected ------------------------------------");
-
+        // console.log(printer.modelPrinter)
         const dataBase = client.db("matanBoxDb");
         const boxsList = dataBase.collection("boxs");
 
@@ -51,7 +72,9 @@ async function run() {
 
 
 
-        const allBoxs = await boxsList.find({}).toArray();
+        const Boxs = await boxsList.find({ model: printer.modelPrinter, length: printer.lengthPrinter }).toArray()
+        console.log({ Boxs })
+        return { Boxs }
 
         // console.log(allBoxs);
 
@@ -83,31 +106,31 @@ webSocketServer.on('connection', ws => {
 
 
 
-const data = [{
-    boxDescription: 'slitter',
-    boxPN: 'bl2888',
-    boxQuantety: 15
-},
-{
-    boxDescription: 'shaft',
-    boxPN: '11100356',
-    boxQuantety: 1
-}];
-
 app.get('/box', cors(corsOptions), (req, res) => {
     // res.sendFile(path.join(__dirname + '/client-app/dist/client-app/index.html'));
-    res.status(200).send(data);
+    // res.status(200).send(data);
 });
+
 app.post('/model', cors(corsOptions), (req, res) => {
-    console.log(req.body)
+    if (!req.body) return response.sendStatus(400);
+
+
+
+    // отправка данных обратно клиенту
+    // res.json({"model": model, "length": length});
+
+    run(req.body).catch(console.dir).then((curentModel) => { res.json(curentModel) })
+    // console.log(run(req.body).catch(console.dir))
     // res.sendFile(path.join(__dirname + '/client-app/dist/client-app/index.html'));
-    res.send(JSON.stringify(req.body));
+    // res.send(JSON.stringify(req.body));
+
+
 });
 
 app.listen(PORT, (err) => {
     if (err) {
         return console.log('error:' + err.message);
     }
-    run().catch(console.dir);
+
     console.log(`Server is running on port ${PORT}.`);
 });
