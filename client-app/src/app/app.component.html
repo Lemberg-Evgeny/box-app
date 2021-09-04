@@ -9,11 +9,11 @@
   <!-- <form action="/model" method="post"> -->
   <form #myForm="ngForm" (submit)="submitForm(myForm)">
     <div>Model Printer <span class="text-danger">*</span></div>
-    <input type="radio" id="Vutek_R" name="modelPrinter" value="R" [ngModel] required>
+    <input type="radio" id="Vutek_R" name="modelPrinter" value="Vutek R" [ngModel] required>
     <label for="Vutek_R">Vutek R</label><br>
-    <input type="radio" id="Vutek_D" name="modelPrinter" value="D" [ngModel] required>
+    <input type="radio" id="Vutek_D" name="modelPrinter" value="Vutek D" [ngModel] required>
     <label for="Vutek_D">Vutek D</label><br>
-    <input type="radio" id="Vutek_Q" name="modelPrinter" value="Q" [ngModel] required>
+    <input type="radio" id="Vutek_Q" name="modelPrinter" value="Vutek Q" [ngModel] required>
     <label for="Vutek_Q">Vutek Q</label><br>
     <input type="radio" id="Matan" name="modelPrinter" value="Matan" [ngModel] required>
     <label for="Matan">Matan</label><br>
@@ -60,17 +60,23 @@
 </table> -->
 <!-- <router-outlet></router-outlet> -->
 
-<table>
-  <tr>
-    <th>box</th>
-    <th>description</th>
-    <th>part number</th>
-    <th>quantety</th>
-    <th>check</th>
-  </tr>
-  <tr *ngFor="let item of apiBoxsList; index as i">
-    <td>{{i+1}}</td>
-    <td>{{item}}</td>
-    <td><input type="checkbox" name="" id=""></td>
-  </tr>
-</table>
+<h1>{{boxsList[0].model}}{{boxsList[0].length}}</h1>
+
+<div *ngFor="let box of boxsList; index as i;">
+  <table>
+    <tr>
+      <th>box: {{i+1}}/{{boxsList.length}}</th>
+      <th>description</th>
+      <th>part number</th>
+      <th>quantety</th>
+      <th>check</th>
+    </tr>
+    <tr *ngFor="let row of box.rows; index as j">
+      <td>{{j+1}}</td>
+      <td>{{row.description}}</td>
+      <td>{{row.PN}}</td>
+      <td>{{row.quantety}}</td>
+      <td><input type="checkbox" name="" id=""></td>
+    </tr>
+  </table>
+</div>

@@ -23,7 +23,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 export class AppComponent {
 
   // apiBoxsList: Observable<Box[]>;
-  apiBoxsList:any[] = [];
+  boxsList:any[] = [];
 
   constructor(private http: HttpService) {
     // this.apiBoxsList = this.http.getData();
@@ -39,7 +39,7 @@ export class AppComponent {
 
       this.http.postData(form.value).subscribe(a=>{
         console.log('data from app.component', a)
-        this.apiBoxsList=a.Boxs
+        this.boxsList=a.Boxs
       });
       // .subscribe((data:any) => this.user=new User(data.name, data.age)););
       // .subscribe((data: any) => this.users=data["userList"]);
