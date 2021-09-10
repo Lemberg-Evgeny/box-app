@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { observable, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 // export interface Box {
 //   boxDescription: string,
@@ -9,26 +9,18 @@ import { observable, Observable } from 'rxjs';
 // }
 
 export class Box {
-  Boxs: any;
+  Boxs: Array<any> = [];
   // constructor(public boxDescription: string, public boxPN: string, public boxQuantety: string) { }
-  constructor() { }
+
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
-  // data: any;
-  // post: any;
 
-  constructor(private http: HttpClient) {
-    // this.http.post('http://localhost:8080/model', { ffffff: "1111111" }, {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //     Authorization: 'my-auth-token'
-    //   })
-    // })
-  };
+
+  constructor(private http: HttpClient) { };
 
   // public getData() {
   //   this.data = this.http.get<Box[]>('http://localhost:8080/model');
@@ -37,20 +29,14 @@ export class HttpService {
   // }
 
 
-  public postData(data: any): Observable<Box> {
-    // this.http.post('http://localhost:8080/model',{dshgkh:"djjdffbhfgb"});
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //     Authorization: 'my-auth-token'
-    //   })
-    // };
-    return this.http.post<Box>('http://localhost:8080/model', data);
-    // (d => {
-    //   // console.log(d)
-    //   return d;
-    // });
-
+  public postData(data: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'my-auth-token'
+      })
+    };
+    return this.http.post<any>('http://localhost:8080/model', data, httpOptions);
   }
 
   // public getByObservable(url: string): Observable<Box[]> {

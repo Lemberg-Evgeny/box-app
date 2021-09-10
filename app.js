@@ -14,14 +14,14 @@ const { Console } = require("console");
 const PORT = process.env.PORT || 8080;
 const wsPORT = process.env.PORT || 4200;
 
-const corsOptions = { origin: "http://localhost:4200"};
+const corsOptions = { origin: "http://localhost:4200" };
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // настройка CORS
 app.use(function (req, res, next) {
-    // res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET, PATCH, PUT, POST, DELETE, OPTIONS");
     next();  // передаем обработку запроса методу app.post
@@ -34,13 +34,6 @@ const uri = "mongodb+srv://Evgeny:12345@statusbox.slcwx.mongodb.net/StatusBox?re
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
-// modelPrinter: 'R',
-//   lengthPrinter: '5',
-//   backPrint: null,
-//   cutter: null,
-//   backLite: null,
-//   rollAndTipe: null,
-//   slitter: null
 
 async function run(printer) {
     try {
@@ -49,7 +42,7 @@ async function run(printer) {
         // console.log(printer.modelPrinter)
         const dataBase = client.db("matanBoxDb");
         const boxsList = dataBase.collection("boxs");
-
+        console.log(printer);
 
         // const pizzaDocuments = [
         //     {
@@ -71,10 +64,12 @@ async function run(printer) {
         // const result = await boxsList.insertMany(pizzaDocuments);
 
 
-
-        const Boxs = await boxsList.find({ model: printer.modelPrinter, length: printer.lengthPrinter }).toArray()
-        console.log({ Boxs })
-        return { Boxs }
+        if (printer.modelPrinter == 'Pro32') {
+            return { Boxs } = await boxsList.find({ model: printer.modelPrinter }).toArray();
+        } else {
+            return { Boxs } = await boxsList.find({ model: printer.modelPrinter, length: printer.lengthPrinter }).toArray();
+        }
+      
 
         // console.log(allBoxs);
 
@@ -91,17 +86,17 @@ async function run(printer) {
 
 
 
-const webSocketServer = new WebSocket.Server({ server });
+// const webSocketServer = new WebSocket.Server({ server });
 
-webSocketServer.on('connection', ws => {
-    ws.on('message', m => {
-        webSocketServer.clients.forEach(client => client.send(m));
-    });
+// webSocketServer.on('connection', ws => {
+//     ws.on('message', m => {
+//         webSocketServer.clients.forEach(client => client.send(m));
+//     });
 
-    ws.on("error", e => ws.send(e));
+//     ws.on("error", e => ws.send(e));
 
-    ws.send('Hi there, I am a WebSocket server');
-});
+//     ws.send('Hi there, I am a WebSocket server');
+// });
 
 
 
@@ -117,7 +112,6 @@ app.post('/model', cors(corsOptions), (req, res) => {
 
 
     // отправка данных обратно клиенту
-    // res.json({"model": model, "length": length});
 
     run(req.body).catch(console.dir).then((curentModel) => { res.json(curentModel) })
     // console.log(run(req.body).catch(console.dir))

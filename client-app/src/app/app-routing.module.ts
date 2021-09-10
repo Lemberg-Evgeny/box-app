@@ -36,6 +36,7 @@ const routes: Routes = [
   // { path: 'test', redirectTo: '/test' }
   { path: '', component: AppComponent },
   { path: 'test', component: BoxComponent },
+  { path: 'model', component: BoxComponent },
   // { path: '**', component: NotFoundComponent },
 ];
 

@@ -1,26 +1,24 @@
-<table>
-    <tr headRow="bold">
-        <td></td>
-        <td> Description </td>
-        <td> P/N </td>
-        <td> Quantity </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td> Double Wheel Holder </td>
-        <td> 11100461 </td>
-        <td> 3 </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td> SHAFT SUPPORT </td>
-        <td> 11102040 </td>
-        <td> 4 </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td> BALL LOCK PINS D=12 L=70 </td>
-        <td> 77700657 </td>
-        <td> 4 </td>
-    </tr>
-</table>
+<div class="container">
+    <h1>{{$model}}{{$length}}</h1>
+  
+    <div *ngFor="let box of $boxsList; index as i;">
+      <table>
+        <tr>
+          <th>box: {{i+1}}/{{$boxsList.length}}</th>
+          <th>ID frome DB</th>
+          <th>description</th>
+          <th>part number</th>
+          <th>quantety</th>
+          <th>check</th>
+        </tr>
+        <tr *ngFor="let row of box.rows; index as j">
+          <td>{{j+1}}</td>
+          <td>{{box._id}}</td>
+          <td>{{row.description}}</td>
+          <td><input type="text" name="" id="" value="{{row.PN}}"></td>
+          <td>{{row.quantety}}</td>
+          <td><input type="checkbox" name="" id=""></td>
+        </tr>
+      </table>
+    </div>
+  </div>

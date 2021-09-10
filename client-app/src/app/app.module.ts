@@ -12,12 +12,14 @@ import { BoxComponent } from './components/box/box.component';
 //services
 import { HttpService } from './services/http.service';
 import { WebsocketService } from './services/websocket.service';
+import { ModelFormComponent } from './components/model-form/model-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BoxComponent
+    BoxComponent,
+    ModelFormComponent
   ],
   imports: [
     BrowserModule,
