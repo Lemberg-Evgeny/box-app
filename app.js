@@ -11,7 +11,7 @@ const { Interface } = require("readline");
 const { Console } = require("console");
 
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8082;
 const wsPORT = process.env.PORT || 4200;
 
 const corsOptions = { origin: "http://localhost:4200" };

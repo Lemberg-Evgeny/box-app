@@ -36,7 +36,7 @@ export class HttpService {
         Authorization: 'my-auth-token'
       })
     };
-    return this.http.post<any>('http://localhost:8080/model', data, httpOptions);
+    return this.http.post<any>('http://localhost:8082/model', data, httpOptions);
   }
 
   // public getByObservable(url: string): Observable<Box[]> {

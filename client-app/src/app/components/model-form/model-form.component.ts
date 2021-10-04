@@ -10,7 +10,6 @@ import { HttpService } from 'src/app/services/http.service';
 export class ModelFormComponent {
   // formIsShow:boolean = true;
 
-
   $boxsList: any[] = [];
   $model: string = '';
   $length: string = '';

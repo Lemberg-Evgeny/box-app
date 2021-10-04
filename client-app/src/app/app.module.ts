@@ -27,7 +27,7 @@ import { ModelFormComponent } from './components/model-form/model-form.component
     HttpClientModule,
     FormsModule
   ],
-  providers: [HttpService, WebsocketService],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
